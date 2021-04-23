@@ -10,11 +10,29 @@
     <div class="container">
         <div class="card" id="result">
             <input class="input-element" id="username" type="text" placeholder="Enter the username" autocomplete="off" />
-            <button id="retrieve" class="button-submit" onclick="getUser()">Get user</button>
+            <button id="retrieve" class="button-submit" onclick="getData()">Get user</button>
         </div>
     </div>
 </body>
 <script>
+    var baseUrl ='http://localhost:3000/api/budget';
+    async function getData() {
+        try {
+            const resp = await fetch(baseUrl, {
+                method: 'GET', // *GET, POST, PUT, DELETE, etc.
+                mode: 'cors', // no-cors, *cors, same-origin
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', // include, *same-origin, omit
+                headers: {
+                'Content-Type': 'application/json'
+            },
+            });
+            console.log("RES Get Budget", await resp.json());
+        } catch (e) {
+            console.error("error getting budget");
+        }
+        
+    }
     function getUser() {
         var request = new XMLHttpRequest();
         var username = document.querySelector('#username').value;

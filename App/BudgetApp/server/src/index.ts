@@ -2,9 +2,11 @@ import express from 'express';
 import mongoose from 'mongoose'
 import { json } from 'body-parser';
 import Router from './routes';
+import cors from 'cors';
 
 const app = express();
 app.use(json())
+app.use(cors());
 app.use('/api',Router)
 
 mongoose.connect('mongodb://localhost:27017/mcmstorage', {
