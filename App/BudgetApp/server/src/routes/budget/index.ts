@@ -19,6 +19,8 @@ router.post('/budget', async (req: Request, res: Response) => {
         await budget.save();
         return res.status(201).send(budget);
     } catch (e) {
-        
+        return res.status(400).send({message: '[Create Budget] Error',e})
     }
 })
+
+export default router
