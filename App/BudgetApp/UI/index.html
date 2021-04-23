@@ -4,66 +4,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Budget Application</title>
+    <link rel="stylesheet" type="text/css" href="app.css">
 </head>
 <body>
-    <div class="container">
-        <div class="card" id="result">
-            <input class="input-element" id="username" type="text" placeholder="Enter the username" autocomplete="off" />
-            <button id="retrieve" class="button-submit" onclick="getData()">Get user</button>
+    <nav>
+        <div class="wrapper">
+            <div class="logo"><a href="#">Budget Application</a></div>
+            <div class="menu">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#data">Current Budget</a></li>
+                    <!-- <li><a href="#" class="tbl-sign">Sign Up</a></li> -->
+                </ul>
+            </div>
         </div>
+    </nav>
+    <div class="wrapper">
+        <!-- for Home -->
+        <section id="home">
+            <img src="https://image.freepik.com/free-vector/code-typing-concept-illustration_114360-3866.jpg"/>
+            <div class="kolom">
+                <p class="deskripsi">Tracking Budget Office</p>
+                <h2>Monitoring Your Office Budget Flow</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, aut.</p>
+                <!-- <p><a href="#" class="tbl-pink">Learning Cashflow</a></p> -->
+            </div>
+        </section>
+
+        <!-- for data -->
+        <section id="data">
+            <div class="kolom">
+                <p class="deskripsi">Data Budget</p>
+                <h2>Current Budget of Your Office</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo voluptatum reiciendis quod eveniet maxime quisquam consequuntur laudantium fugit optio? Voluptas!</p>
+                <p><a href="#budget" class="tbl-pink" onclick="getData()">Get History Budget</a></p>
+            </div>
+            <img src="https://image.freepik.com/free-vector/investor-with-laptop-monitoring-growth-dividends-trader-sitting-stack-money-investing-capital-analyzing-profit-graphs-vector-illustration-finance-stock-trading-investment_74855-8432.jpg">
+            
+        </section>
+        <div id="budget">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo voluptatum reiciendis quod eveniet maxime quisquam consequuntur laudantium fugit optio? Voluptas!</p>
+        </div>
+        <div id="boxData"></div>   
     </div>
 </body>
-<script>
-    var baseUrl ='http://localhost:3000/api/budget';
-    async function getData() {
-        try {
-            const resp = await fetch(baseUrl, {
-                method: 'GET', // *GET, POST, PUT, DELETE, etc.
-                mode: 'cors', // no-cors, *cors, same-origin
-                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-                credentials: 'same-origin', // include, *same-origin, omit
-                headers: {
-                'Content-Type': 'application/json'
-            },
-            });
-            console.log("RES Get Budget", await resp.json());
-        } catch (e) {
-            console.error("error getting budget");
-        }
-        
-    }
-    function getUser() {
-        var request = new XMLHttpRequest();
-        var username = document.querySelector('#username').value;
-
-        request.open('GET','https://api.github.com/users/'+username);
-        request.onload = function() {
-            var data = JSON.parse(request.responseText);
-            result.innerHTML = `
-            <div class="row">
-                <div class="col-3">
-                    <img class="img-fluid" src="${ data.avatar_url }" />
-                </div>
-                <div class="col-9">
-                    <h3 class="data-title">${ data.name }</h3>
-                    <p class="data-text">Bio : ${ data.bio }</p>
-                    <p class="data-text">Blog : ${ data.blog }</p>
-                    <div style="margin-top: 16px">
-                        <div class="data-badge">Repositories ${ data.public_repos }</div>
-                        <div class="data-badge">Followers ${ data.followers }</div>
-                        <div class="data-badge">Following ${ data.following }</div>
-                    </div>
-                    <div>
-                        <button class="btn" onClick="window.open('${ data.html_url }');">View ${ data.name }'s profile</button>
-                    </div>
-                </div>
-            </div>
-            `;
-        }
-        console.log(request);
-        request.send();
-    }
-    
-</script>
+<script src="app.js"></script>
 </html>
